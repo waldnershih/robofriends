@@ -1,9 +1,9 @@
 import React from "react";
-// import { StrictMode } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, combineReducers } from "redux";
-import { createLogger } from "redux-logger";
+// import { createLogger } from "redux-logger";
 import thunk from "redux-thunk";
 import { searchRobots, requestRobots } from "./redux/reducers";
 import "tachyons";
@@ -17,17 +17,17 @@ import reportWebVitals from "./reportWebVitals";
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
-const logger = createLogger();
+// const logger = createLogger();
 const rootReducer = combineReducers({ searchRobots, requestRobots });
-const store = createStore(rootReducer, applyMiddleware(thunk, logger));
-// const store = createStore(rootReducer, applyMiddleware(thunk));
+// const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 root.render(
-	// <StrictMode>
-	<Provider store={store}>
-		<App />
-	</Provider>
-	// </StrictMode>
+	<StrictMode>
+		<Provider store={store}>
+			<App />
+		</Provider>
+	</StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change
